@@ -10570,40 +10570,51 @@ module.exports = __webpack_require__.p + "fonts/exo-thin.woff2";
 
 /* WEBPACK VAR INJECTION */(function($) {(function () {
 
-    $(document).ready(function () {
+	function Product() {
+		var self = this,
+			$productBtn = $('.product__select-btn'),
+			$label = $('.item');
 
-        productBehaviour();
+		this.init = function () {
+			$productBtn.click(function (e) {
+				e.preventDefault();
+				self.productClickedOnce($(this));
+				self.productClick($(this));
+			});
 
-    });
+			$label.click(function () {
+				self.productClickedOnce($(this));
+			});
 
-    function productBehaviour() {
-        var $procuctCard;
-        var $productBtn;
-        var $productBlock = $('.product');
+		};
 
-        $productBlock.click(function () {
-            if ($(this).hasClass('product_disabled')) {
-                return
-            }
+		this.productClickedOnce = function ($section) {
+			var $product = $section.closest('.product').toggleClass('product_selected');
 
-            $procuctCard = $productBlock.find('.item');
-            $productBtn = $productBlock.find('.product__select-btn');
+			if (!($product.hasClass('product_was-selected'))) {
+				$product.mouseleave(function () {
+					$product.addClass('product_was-selected');
+				});
+			}
 
+		};
 
-            if (($procuctCard.is(event.target) || $procuctCard.has(event.target).length !== 0) || ($productBtn.is(event.target) || $productBtn.has(event.target).length !== 0)) {
+		this.productClick = function ($section) {
+			 $section.closest('.product')
+				 .find('.item')
+				 .click();
+		}
+	}
 
-                $(this).closest('.product').toggleClass('product_selected');
+	var productItems = new Product();
 
-                if (!($(this).hasClass('product_was-selected'))) {
-                    $(this).mouseleave(function () {
-                        $(this).addClass('product_was-selected');
-                    });
-                }
-            }
-        });
-    }
+	$(document).ready(function () {
+
+		productItems.init();
+
+	});
+
 }());
-
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
@@ -10618,10 +10629,10 @@ module.exports = __webpack_require__.p + "fonts/exo-thin.woff2";
 
 var pug = __webpack_require__(14);
 
-function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;pug_html = pug_html + "\u003C!DOCTYPE html\u003E\u003Chtml lang=\"ru\"\u003E\u003Chead\u003E\u003C\u002Fhead\u003E\u003Cmeta charset=\"utf-8\"\u003E\u003Clink rel=\"icon\" href=\"img\u002Ffavicon.ico\" type=\"image\u002Fx-icon\"\u003E\u003Ctitle\u003EНямушка\u003C\u002Ftitle\u003E\u003Cmeta name=\"viewport\" content=\"width=device-width\"\u003E\u003Clink src=\"style.css\"\u003E\u003Cbody\u003E";
-var item1 = [{id: 'foie-gras', extraClasses:'', composition: 'с фуа-гра', description :'Печень утки разварная с артишоками.', weight: '0,5', points: ['10 порций', 'мышь в подарок']}]
-var item2 = [{id: 'fish', extraClasses: '', composition: 'с рыбой', description: 'Головы щучьи с чесноком да свежайшая сёмгушка.', weight: '2', points: ['40 порций', '2 мыши в подарок']}]
-var item3 = [{id: 'chicken', extraClasses: 'product_disabled', composition : 'с курой', description: 'Филе из цыплят с трюфелями в бульоне.',  weight: '5',points: ['100 порций', '2 мыши в подарок', 'заказчик доволен']}]
+function template(locals) {var pug_html = "", pug_mixins = {}, pug_interp;;var locals_for_with = (locals || {});(function (disabled) {pug_html = pug_html + "\u003C!DOCTYPE html\u003E\u003Chtml lang=\"ru\"\u003E\u003Chead\u003E\u003C\u002Fhead\u003E\u003Cmeta charset=\"utf-8\"\u003E\u003Clink rel=\"icon\" href=\"img\u002Ffavicon.ico\" type=\"image\u002Fx-icon\"\u003E\u003Ctitle\u003EНямушка\u003C\u002Ftitle\u003E\u003Cmeta name=\"viewport\" content=\"width=device-width\"\u003E\u003Clink src=\"style.css\"\u003E\u003Cbody\u003E";
+var item1 = [{id: 'foie-gras', status: '', composition: 'с фуа-гра', description :'Печень утки разварная с артишоками.', weight: '0,5', points: ['10 порций', 'мышь в подарок']}]
+var item2 = [{id: 'fish', status: '', composition: 'с рыбой', description: 'Головы щучьи с чесноком да свежайшая сёмгушка.', weight: '2', points: ['40 порций', '2 мыши в подарок']}]
+var item3 = [{id: 'chicken', status: 'disabled', composition : 'с курой', description: 'Филе из цыплят с трюфелями в бульоне.',  weight: '5',points: ['100 порций', '2 мыши в подарок', 'заказчик доволен']}]
 pug_mixins["product"] = pug_interp = function(items){
 var block = (this && this.block), attributes = (this && this.attributes) || {};
 // iterate items
@@ -10630,7 +10641,17 @@ var block = (this && this.block), attributes = (this && this.attributes) || {};
   if ('number' == typeof $$obj.length) {
       for (var pug_index0 = 0, $$l = $$obj.length; pug_index0 < $$l; pug_index0++) {
         var item = $$obj[pug_index0];
-pug_html = pug_html + "\u003Cli" + (pug.attr("class", pug.classes([item.extraClasses+' product'], [true]), false, true)+" aria-label=\"Карточка продукта\"") + "\u003E\u003Cinput" + (" class=\"item-checkbox\""+" type=\"checkbox\""+pug.attr("id", 'product'+item.id, true, true)) + "\u003E\u003Cdiv class=\"item\"\u003E\u003Cdiv class=\"item__degradation-background\"\u003E\u003Cdiv class=\"degradation-background__top\"\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"degradation-background__bottom\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"item__content\"\u003E\u003Cp class=\"content__default-text\"\u003EСказочное заморское яство\u003C\u002Fp\u003E\u003Cp class=\"content__was-selected-hover-text\"\u003EКотэ не одобряет?\u003C\u002Fp\u003E\u003Ch2\u003EНямушка \u003Cspan class=\"h2__description\"\u003E" + (pug.escape(null == (pug_interp = item.composition) ? "" : pug_interp)) + "\u003C\u002Fspan\u003E\u003C\u002Fh2\u003E\u003Cul class=\"points-list\"\u003E";
+if (item.status === 'disabled') {
+disabled = true
+}
+else
+if (item.status === '') {
+disabled = false
+}
+else {
+disabled = false
+}
+pug_html = pug_html + "\u003Cli" + (pug.attr("class", pug.classes(['product_'+item.status+' product'], [true]), false, true)+" aria-label=\"Карточка продукта\"") + "\u003E\u003Cinput" + (" class=\"item-checkbox\""+" type=\"checkbox\" name=\"product-checkbox\""+pug.attr("value", item.composition, true, true)+pug.attr("id", 'product_'+item.id, true, true)+pug.attr("disabled", disabled, true, true)) + "\u003E\u003Clabel" + (" class=\"item\""+pug.attr("for", 'product_'+item.id, true, true)) + "\u003E\u003Cdiv class=\"item__degradation-background\"\u003E\u003Cdiv class=\"degradation-background__top\"\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"degradation-background__bottom\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"item__content\"\u003E\u003Cp class=\"content__default-text\"\u003EСказочное заморское яство\u003C\u002Fp\u003E\u003Cp class=\"content__was-selected-hover-text\"\u003EКотэ не одобряет?\u003C\u002Fp\u003E\u003Ch2\u003EНямушка \u003Cspan class=\"h2__description\"\u003E" + (pug.escape(null == (pug_interp = item.composition) ? "" : pug_interp)) + "\u003C\u002Fspan\u003E\u003C\u002Fh2\u003E\u003Cul class=\"points-list\"\u003E";
 // iterate item.points
 ;(function(){
   var $$obj = item.points;
@@ -10649,14 +10670,24 @@ pug_html = pug_html + "\u003Cli\u003E \u003Cp\u003E" + (pug.escape(null == (pug_
   }
 }).call(this);
 
-pug_html = pug_html + "\u003C\u002Ful\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"item__weight\"\u003E\u003Cp class=\"weight__num\"\u003E" + (pug.escape(null == (pug_interp = item.weight) ? "" : pug_interp)) + " \u003C\u002Fp\u003E\u003Cp class=\"weight__measure\"\u003Eкг\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"product__description\"\u003E\u003Cp class=\"description__default-text\"\u003EЧего сидишь?  Порадуй котэ, \u003Cbutton class=\"product__select-btn btn_like-link\" aria-label=\"Копка выбора и отмены выбора товара\"\u003E\u003Cspan class=\"btn__text\"\u003Eкупи\u003C\u002Fspan\u003E.\u003C\u002Fbutton\u003E\u003C\u002Fp\u003E\u003Cp class=\"description__disabled-text\"\u003EПечалька, " + (pug.escape(null == (pug_interp = item.composition) ? "" : pug_interp)) + " закончился.\u003C\u002Fp\u003E\u003Cp class=\"description__selected-text\"\u003E" + (pug.escape(null == (pug_interp = item.description) ? "" : pug_interp)) + "\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003C\u002Fli\u003E";
+pug_html = pug_html + "\u003C\u002Ful\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"item__weight\"\u003E\u003Cp class=\"weight__num\"\u003E" + (pug.escape(null == (pug_interp = item.weight) ? "" : pug_interp)) + " \u003C\u002Fp\u003E\u003Cp class=\"weight__measure\"\u003Eкг\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003C\u002Flabel\u003E\u003Cdiv class=\"product__description\"\u003E\u003Cp class=\"description__default-text\"\u003EЧего сидишь?  Порадуй котэ, \u003Cbutton class=\"product__select-btn btn_like-link\" aria-label=\"Копка выбора и отмены выбора товара\"\u003E\u003Cspan class=\"btn__text\"\u003Eкупи\u003C\u002Fspan\u003E.\u003C\u002Fbutton\u003E\u003C\u002Fp\u003E\u003Cp class=\"description__disabled-text\"\u003EПечалька, " + (pug.escape(null == (pug_interp = item.composition) ? "" : pug_interp)) + " закончился.\u003C\u002Fp\u003E\u003Cp class=\"description__selected-text\"\u003E" + (pug.escape(null == (pug_interp = item.description) ? "" : pug_interp)) + "\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003C\u002Fli\u003E";
       }
   } else {
     var $$l = 0;
     for (var pug_index0 in $$obj) {
       $$l++;
       var item = $$obj[pug_index0];
-pug_html = pug_html + "\u003Cli" + (pug.attr("class", pug.classes([item.extraClasses+' product'], [true]), false, true)+" aria-label=\"Карточка продукта\"") + "\u003E\u003Cinput" + (" class=\"item-checkbox\""+" type=\"checkbox\""+pug.attr("id", 'product'+item.id, true, true)) + "\u003E\u003Cdiv class=\"item\"\u003E\u003Cdiv class=\"item__degradation-background\"\u003E\u003Cdiv class=\"degradation-background__top\"\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"degradation-background__bottom\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"item__content\"\u003E\u003Cp class=\"content__default-text\"\u003EСказочное заморское яство\u003C\u002Fp\u003E\u003Cp class=\"content__was-selected-hover-text\"\u003EКотэ не одобряет?\u003C\u002Fp\u003E\u003Ch2\u003EНямушка \u003Cspan class=\"h2__description\"\u003E" + (pug.escape(null == (pug_interp = item.composition) ? "" : pug_interp)) + "\u003C\u002Fspan\u003E\u003C\u002Fh2\u003E\u003Cul class=\"points-list\"\u003E";
+if (item.status === 'disabled') {
+disabled = true
+}
+else
+if (item.status === '') {
+disabled = false
+}
+else {
+disabled = false
+}
+pug_html = pug_html + "\u003Cli" + (pug.attr("class", pug.classes(['product_'+item.status+' product'], [true]), false, true)+" aria-label=\"Карточка продукта\"") + "\u003E\u003Cinput" + (" class=\"item-checkbox\""+" type=\"checkbox\" name=\"product-checkbox\""+pug.attr("value", item.composition, true, true)+pug.attr("id", 'product_'+item.id, true, true)+pug.attr("disabled", disabled, true, true)) + "\u003E\u003Clabel" + (" class=\"item\""+pug.attr("for", 'product_'+item.id, true, true)) + "\u003E\u003Cdiv class=\"item__degradation-background\"\u003E\u003Cdiv class=\"degradation-background__top\"\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"degradation-background__bottom\"\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"item__content\"\u003E\u003Cp class=\"content__default-text\"\u003EСказочное заморское яство\u003C\u002Fp\u003E\u003Cp class=\"content__was-selected-hover-text\"\u003EКотэ не одобряет?\u003C\u002Fp\u003E\u003Ch2\u003EНямушка \u003Cspan class=\"h2__description\"\u003E" + (pug.escape(null == (pug_interp = item.composition) ? "" : pug_interp)) + "\u003C\u002Fspan\u003E\u003C\u002Fh2\u003E\u003Cul class=\"points-list\"\u003E";
 // iterate item.points
 ;(function(){
   var $$obj = item.points;
@@ -10675,17 +10706,17 @@ pug_html = pug_html + "\u003Cli\u003E \u003Cp\u003E" + (pug.escape(null == (pug_
   }
 }).call(this);
 
-pug_html = pug_html + "\u003C\u002Ful\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"item__weight\"\u003E\u003Cp class=\"weight__num\"\u003E" + (pug.escape(null == (pug_interp = item.weight) ? "" : pug_interp)) + " \u003C\u002Fp\u003E\u003Cp class=\"weight__measure\"\u003Eкг\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"product__description\"\u003E\u003Cp class=\"description__default-text\"\u003EЧего сидишь?  Порадуй котэ, \u003Cbutton class=\"product__select-btn btn_like-link\" aria-label=\"Копка выбора и отмены выбора товара\"\u003E\u003Cspan class=\"btn__text\"\u003Eкупи\u003C\u002Fspan\u003E.\u003C\u002Fbutton\u003E\u003C\u002Fp\u003E\u003Cp class=\"description__disabled-text\"\u003EПечалька, " + (pug.escape(null == (pug_interp = item.composition) ? "" : pug_interp)) + " закончился.\u003C\u002Fp\u003E\u003Cp class=\"description__selected-text\"\u003E" + (pug.escape(null == (pug_interp = item.description) ? "" : pug_interp)) + "\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003C\u002Fli\u003E";
+pug_html = pug_html + "\u003C\u002Ful\u003E\u003C\u002Fdiv\u003E\u003Cdiv class=\"item__weight\"\u003E\u003Cp class=\"weight__num\"\u003E" + (pug.escape(null == (pug_interp = item.weight) ? "" : pug_interp)) + " \u003C\u002Fp\u003E\u003Cp class=\"weight__measure\"\u003Eкг\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003C\u002Flabel\u003E\u003Cdiv class=\"product__description\"\u003E\u003Cp class=\"description__default-text\"\u003EЧего сидишь?  Порадуй котэ, \u003Cbutton class=\"product__select-btn btn_like-link\" aria-label=\"Копка выбора и отмены выбора товара\"\u003E\u003Cspan class=\"btn__text\"\u003Eкупи\u003C\u002Fspan\u003E.\u003C\u002Fbutton\u003E\u003C\u002Fp\u003E\u003Cp class=\"description__disabled-text\"\u003EПечалька, " + (pug.escape(null == (pug_interp = item.composition) ? "" : pug_interp)) + " закончился.\u003C\u002Fp\u003E\u003Cp class=\"description__selected-text\"\u003E" + (pug.escape(null == (pug_interp = item.description) ? "" : pug_interp)) + "\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E\u003C\u002Fli\u003E";
     }
   }
 }).call(this);
 
 };
-pug_html = pug_html + "\u003Csection class=\"main\"\u003E\u003Cdiv class=\"wrapper\"\u003E\u003Ch1\u003EТы сегодня покормил кота?\u003C\u002Fh1\u003E\u003Cul class=\"product-list\"\u003E";
+pug_html = pug_html + "\u003Csection class=\"main\"\u003E\u003Cdiv class=\"wrapper\"\u003E\u003Ch1\u003EТы сегодня покормил кота?\u003C\u002Fh1\u003E\u003Cform\u003E\u003Cul class=\"product-list\"\u003E";
 pug_mixins["product"](item1);
 pug_mixins["product"](item2);
 pug_mixins["product"](item3);
-pug_html = pug_html + "\u003C\u002Ful\u003E\u003C\u002Fdiv\u003E\u003C\u002Fsection\u003E\u003C\u002Fbody\u003E\u003C\u002Fhtml\u003E";;return pug_html;};
+pug_html = pug_html + "\u003C\u002Ful\u003E\u003C\u002Fform\u003E\u003C\u002Fdiv\u003E\u003C\u002Fsection\u003E\u003C\u002Fbody\u003E\u003C\u002Fhtml\u003E";}.call(this,"disabled" in locals_for_with?locals_for_with.disabled:typeof disabled!=="undefined"?disabled:undefined));;return pug_html;};
 module.exports = template;
 
 /***/ }),
