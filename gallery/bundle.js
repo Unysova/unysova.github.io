@@ -1,1 +1,797 @@
-"use strict";function _typeof(t){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var app=function(){function e(){}function r(t,e){for(var n in e)t[n]=e[n];return t}function P(t){t()}function Q(t,e){t.appendChild(e)}function V(t,e,n){t.insertBefore(e,n)}function W(t){t.parentNode.removeChild(t)}function X(t,e){for(var n=0;n<t.length;n+=1)t[n]&&t[n].d(e)}function Y(t){return document.createElement(t)}function Z(t){return document.createTextNode(t)}function $(t,e,n,s){t.addEventListener(e,n,s)}function tt(t,e,n,s){t.removeEventListener(e,n,s)}function et(t,e,n){null==n?t.removeAttribute(e):t.setAttribute(e,n)}function b(t,e){t.data=""+e}function s(){return Object.create(null)}function n(t){for(;t&&t.length;)t.shift()()}var t={processFiles:function(t){console.info(t),this.renderImage(t[0])},getLink:function(){this.getSize(this.get().imageUrl)},renderImage:function(t){var n=this,e=new FileReader;e.onload=function(t){var e=t.target.result;n.getSize(e)},e.readAsDataURL(t)},getSize:function(n){var t=new Image,s=this;t.onload=function(){var t=this.width,e=this.height;s.pushImage(n,t,e)},t.onerror=function(){alert("Упс. что-то пошло не так. Проверьте правильность ссылки")},t.src=n},pushImage:function(t,e,n){var s=this.get().images,i={src:"".concat(t),width:e,height:n};s.push(i),this.set({images:s})}};function nt(t,e,n){var s=Object.create(t);return s.image=e[n],s}function h(t,e,n){var s=Object.create(t);return s.image=e[n],s}function st(i,t){for(var r,s,a,o,c,l=0===t.images.length&&g(i,t),u=t.images,f=[],e=0;e<u.length;e+=1)f[e]=m(i,h(t,u,e));return{c:function(){r=Y("div"),(s=Y("h2")).textContent="Список загруженных изображений:",a=Z("\r\n                "),l&&l.c(),o=Z("\r\n                "),c=Y("ul");for(var t=0;t<f.length;t+=1)f[t].c();c.className="images-list",r.className="loaded-images-info svelte-ku3qsp"},m:function(t,e){V(t,r,e),Q(r,s),Q(r,a),l&&l.m(r,null),Q(r,o),Q(r,c);for(var n=0;n<f.length;n+=1)f[n].m(c,null)},p:function(t,e){if(0===e.images.length?l||((l=g(i,e)).c(),l.m(r,o)):l&&(l.d(1),l=null),t.images){u=e.images;for(var n=0;n<u.length;n+=1){var s=h(e,u,n);f[n]?f[n].p(t,s):(f[n]=m(i,s),f[n].c(),f[n].m(c,null))}for(;n<f.length;n+=1)f[n].d(1);f.length=u.length}},d:function(t){t&&W(r),l&&l.d(),X(f,t)}}}function g(t,e){var n;return{c:function(){(n=Y("p")).textContent="Вы еще ничего не загрузили",n.className="svelte-ku3qsp"},m:function(t,e){V(t,n,e)},d:function(t){t&&W(n)}}}function m(t,e){var n,s,i,r,a,o,c,l,u,f,h,g,m,p,d=e.image.src,_=e.image.width,v=e.image.height;return{c:function(){n=Y("li"),s=Y("p"),i=Z("src: "),r=Z(d),a=Z("\r\n                        "),o=Y("p"),c=Z("width: "),l=Z(_),u=Z(" px"),f=Z("\r\n                        "),h=Y("p"),g=Z("height: "),m=Z(v),p=Z(" px"),s.className="svelte-ku3qsp",o.className="svelte-ku3qsp",h.className="svelte-ku3qsp"},m:function(t,e){V(t,n,e),Q(n,s),Q(s,i),Q(s,r),Q(n,a),Q(n,o),Q(o,c),Q(o,l),Q(o,u),Q(n,f),Q(n,h),Q(h,g),Q(h,m),Q(h,p)},p:function(t,e){t.images&&d!==(d=e.image.src)&&b(r,d),t.images&&_!==(_=e.image.width)&&b(l,_),t.images&&v!==(v=e.image.height)&&b(m,v)},d:function(t){t&&W(n)}}}function it(t,e){var n,s,i,r;return{c:function(){n=Y("div"),(s=Y("img")).src=i=e.image.src,s.alt="",s.className="gallery__image svelte-ku3qsp",n.className=r="gallery__image-wrapper "+e.borderClass+" svelte-ku3qsp"},m:function(t,e){V(t,n,e),Q(n,s)},p:function(t,e){t.images&&i!==(i=e.image.src)&&(s.src=i),t.borderClass&&r!==(r="gallery__image-wrapper "+e.borderClass+" svelte-ku3qsp")&&(n.className=r)},d:function(t){t&&W(n)}}}function i(t){var e,n;n=t,(e=this)._handlers=s(),e._slots=s(),e._bind=n._bind,e._staged={},e.options=n,e.root=n.root||e,e.store=n.store||e.root.store,n.root||(e._beforecreate=[],e._oncreate=[],e._aftercreate=[]),this._state=r({images:[],imageUrl:"",showImagesInfo:!1,borderClass:""},t.data),this._intro=!!t.intro,this._fragment=function(i,r){var s,a,o,c,l,u,f,h,g,m,p,d,_,v,b,k,y,N,C,q,w,x,I,S,U,L,j,O,z,A,E,F,R=!1;function e(t){i.processFiles(this.files)}function n(){R=!0,i.set({imageUrl:v.value}),R=!1}function B(t){i.getLink()}function D(t){i.set({borderClass:"gallery__image-wrapper_black-border"})}function G(t){i.set({borderClass:"gallery__image-wrapper_flower-border"})}function T(t){i.set({borderClass:""})}function H(t){i.set({showImagesInfo:!r.showImagesInfo})}for(var J=r.showImagesInfo&&st(i,r),K=r.images,M=[],t=0;t<K.length;t+=1)M[t]=it(0,nt(r,K,t));return{c:function(){s=Y("div"),a=Y("section"),(o=Y("h1")).textContent="Галерея",c=Z("\r\n        "),l=Y("div"),(u=Y("h2")).textContent="Загрузка фото",f=Z("\r\n            "),(h=Y("p")).textContent="Вы можете загрузить картинку с вашего компьютера",g=Z("\r\n            "),m=Y("input"),p=Z("\r\n\r\n            "),(d=Y("p")).textContent="или добавьте ссылку на сторонний ресурс(после добавления ссылки, нажмите enter)",_=Z("\r\n            "),v=Y("input"),b=Z("\r\n            "),(k=Y("button")).textContent="Добавить картинку по ссылке",y=Z("\r\n        "),N=Y("div"),(C=Y("h2")).textContent="Добавление рамки",q=Z("\r\n            "),(w=Y("button")).textContent="Добавить черную\r\n                рамку",x=Z("\r\n            "),(I=Y("button")).textContent="Добавить цветочную\r\n                рамку",S=Z("\r\n            "),(U=Y("button")).textContent="Удалить рамку",L=Z("\r\n        "),j=Y("div"),(O=Y("button")).textContent="Показать/скрыть информацию по картинкам",z=Z("\r\n            "),J&&J.c(),A=Z("\r\n\r\n    "),E=Y("div");for(var t=0;t<M.length;t+=1)M[t].c();$(m,"change",e),et(m,"type","file"),m.placeholder="Загрузите файл с вашего компьютера",m.className="svelte-ku3qsp",$(v,"input",n),et(v,"type","url"),v.placeholder="укажите ссылку на файл",v.className="svelte-ku3qsp",$(k,"click",B),k.className="svelte-ku3qsp",l.className="photo-upload toolbar__section svelte-ku3qsp",$(w,"click",D),w.className="svelte-ku3qsp",$(I,"click",G),I.className="svelte-ku3qsp",$(U,"click",T),U.className="svelte-ku3qsp",N.className="decoration toolbar__section svelte-ku3qsp",$(O,"click",H),O.className="svelte-ku3qsp",j.className="toolbar__section svelte-ku3qsp",a.className="toolbar svelte-ku3qsp",E.className="gallery svelte-ku3qsp",s.className="gallery-page svelte-ku3qsp"},m:function(t,e){V(t,s,e),Q(s,a),Q(a,o),Q(a,c),Q(a,l),Q(l,u),Q(l,f),Q(l,h),Q(l,g),Q(l,m),Q(l,p),Q(l,d),Q(l,_),Q(l,v),v.value=r.imageUrl,Q(l,b),Q(l,k),Q(a,y),Q(a,N),Q(N,C),Q(N,q),Q(N,w),Q(N,x),Q(N,I),Q(N,S),Q(N,U),Q(a,L),Q(a,j),Q(j,O),Q(j,z),J&&J.m(j,null),Q(s,A),Q(s,E);for(var n=0;n<M.length;n+=1)M[n].m(E,null);F=!0},p:function(t,e){if(r=e,!R&&t.imageUrl&&(v.value=r.imageUrl),r.showImagesInfo?J?J.p(t,r):((J=st(i,r)).c(),J.m(j,null)):J&&(J.d(1),J=null),t.borderClass||t.images){K=r.images;for(var n=0;n<K.length;n+=1){var s=nt(r,K,n);M[n]?M[n].p(t,s):(M[n]=it(0,s),M[n].c(),M[n].m(E,null))}for(;n<M.length;n+=1)M[n].d(1);M.length=K.length}},i:function(t,e){F||this.m(t,e)},o:P,d:function(t){t&&W(s),tt(m,"change",e),tt(v,"input",n),tt(k,"click",B),tt(w,"click",D),tt(I,"click",G),tt(U,"click",T),tt(O,"click",H),J&&J.d(),X(M,t)}}}(this,this._state),t.target&&(this._fragment.c(),this._mount(t.target,t.anchor)),this._intro=!0}return r(i.prototype,{destroy:function(t){this.destroy=e,this.fire("destroy"),this.set=e,this._fragment.d(!1!==t),this._fragment=null,this._state={}},get:function(){return this._state},fire:function(t,e){var n=t in this._handlers&&this._handlers[t].slice();if(n)for(var s=0;s<n.length;s+=1){var i=n[s];if(!i.__calling)try{i.__calling=!0,i.call(this,e)}finally{i.__calling=!1}}},on:function(t,e){var n=this._handlers[t]||(this._handlers[t]=[]);return n.push(e),{cancel:function(){var t=n.indexOf(e);~t&&n.splice(t,1)}}},set:function(t){var e;this._set(r({},t)),this.root._lock||((e=this.root)._lock=!0,n(e._beforecreate),n(e._oncreate),n(e._aftercreate),e._lock=!1)},_recompute:e,_set:function(t){var e=this._state,n={},s=!1;for(var i in t=r(this._staged,t),this._staged={},t)this._differs(t[i],e[i])&&(n[i]=s=!0);s&&(this._state=r(r({},e),t),this._recompute(n,this._state),this._bind&&this._bind(n,this._state),this._fragment&&(this.fire("state",{changed:n,current:this._state,previous:e}),this._fragment.p(n,this._state),this.fire("update",{changed:n,current:this._state,previous:e})))},_stage:function(t){r(this._staged,t)},_mount:function(t,e){this._fragment[this._fragment.i?"i":"m"](t,e||null)},_differs:function(t,e){return t!=t?e==e:t!==e||t&&"object"==_typeof(t)||"function"==typeof t}}),r(i.prototype,t),new i({target:document.body,data:{name:"Gallery"}})}();
+var app = (function () {
+	'use strict';
+
+	function noop() {}
+
+	function assign(tar, src) {
+		for (var k in src) tar[k] = src[k];
+		return tar;
+	}
+
+	function addLoc(element, file, line, column, char) {
+		element.__svelte_meta = {
+			loc: { file, line, column, char }
+		};
+	}
+
+	function run(fn) {
+		fn();
+	}
+
+	function append(target, node) {
+		target.appendChild(node);
+	}
+
+	function insert(target, node, anchor) {
+		target.insertBefore(node, anchor);
+	}
+
+	function detachNode(node) {
+		node.parentNode.removeChild(node);
+	}
+
+	function destroyEach(iterations, detach) {
+		for (var i = 0; i < iterations.length; i += 1) {
+			if (iterations[i]) iterations[i].d(detach);
+		}
+	}
+
+	function createElement(name) {
+		return document.createElement(name);
+	}
+
+	function createText(data) {
+		return document.createTextNode(data);
+	}
+
+	function addListener(node, event, handler, options) {
+		node.addEventListener(event, handler, options);
+	}
+
+	function removeListener(node, event, handler, options) {
+		node.removeEventListener(event, handler, options);
+	}
+
+	function setAttribute(node, attribute, value) {
+		if (value == null) node.removeAttribute(attribute);
+		else node.setAttribute(attribute, value);
+	}
+
+	function setData(text, data) {
+		text.data = '' + data;
+	}
+
+	function blankObject() {
+		return Object.create(null);
+	}
+
+	function destroy(detach) {
+		this.destroy = noop;
+		this.fire('destroy');
+		this.set = noop;
+
+		this._fragment.d(detach !== false);
+		this._fragment = null;
+		this._state = {};
+	}
+
+	function destroyDev(detach) {
+		destroy.call(this, detach);
+		this.destroy = function() {
+			console.warn('Component was already destroyed');
+		};
+	}
+
+	function _differs(a, b) {
+		return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
+	}
+
+	function fire(eventName, data) {
+		var handlers =
+			eventName in this._handlers && this._handlers[eventName].slice();
+		if (!handlers) return;
+
+		for (var i = 0; i < handlers.length; i += 1) {
+			var handler = handlers[i];
+
+			if (!handler.__calling) {
+				try {
+					handler.__calling = true;
+					handler.call(this, data);
+				} finally {
+					handler.__calling = false;
+				}
+			}
+		}
+	}
+
+	function flush(component) {
+		component._lock = true;
+		callAll(component._beforecreate);
+		callAll(component._oncreate);
+		callAll(component._aftercreate);
+		component._lock = false;
+	}
+
+	function get() {
+		return this._state;
+	}
+
+	function init(component, options) {
+		component._handlers = blankObject();
+		component._slots = blankObject();
+		component._bind = options._bind;
+		component._staged = {};
+
+		component.options = options;
+		component.root = options.root || component;
+		component.store = options.store || component.root.store;
+
+		if (!options.root) {
+			component._beforecreate = [];
+			component._oncreate = [];
+			component._aftercreate = [];
+		}
+	}
+
+	function on(eventName, handler) {
+		var handlers = this._handlers[eventName] || (this._handlers[eventName] = []);
+		handlers.push(handler);
+
+		return {
+			cancel: function() {
+				var index = handlers.indexOf(handler);
+				if (~index) handlers.splice(index, 1);
+			}
+		};
+	}
+
+	function set(newState) {
+		this._set(assign({}, newState));
+		if (this.root._lock) return;
+		flush(this.root);
+	}
+
+	function _set(newState) {
+		var oldState = this._state,
+			changed = {},
+			dirty = false;
+
+		newState = assign(this._staged, newState);
+		this._staged = {};
+
+		for (var key in newState) {
+			if (this._differs(newState[key], oldState[key])) changed[key] = dirty = true;
+		}
+		if (!dirty) return;
+
+		this._state = assign(assign({}, oldState), newState);
+		this._recompute(changed, this._state);
+		if (this._bind) this._bind(changed, this._state);
+
+		if (this._fragment) {
+			this.fire("state", { changed: changed, current: this._state, previous: oldState });
+			this._fragment.p(changed, this._state);
+			this.fire("update", { changed: changed, current: this._state, previous: oldState });
+		}
+	}
+
+	function _stage(newState) {
+		assign(this._staged, newState);
+	}
+
+	function setDev(newState) {
+		if (typeof newState !== 'object') {
+			throw new Error(
+				this._debugName + '.set was called without an object of data key-values to update.'
+			);
+		}
+
+		this._checkReadOnly(newState);
+		set.call(this, newState);
+	}
+
+	function callAll(fns) {
+		while (fns && fns.length) fns.shift()();
+	}
+
+	function _mount(target, anchor) {
+		this._fragment[this._fragment.i ? 'i' : 'm'](target, anchor || null);
+	}
+
+	var protoDev = {
+		destroy: destroyDev,
+		get,
+		fire,
+		on,
+		set: setDev,
+		_recompute: noop,
+		_set,
+		_stage,
+		_mount,
+		_differs
+	};
+
+	/* src\App.html generated by Svelte v2.16.1 */
+
+	function data() {
+	  return {
+	    images: [],
+	    imageUrl: '',
+	    showImagesInfo: false,
+	    borderClass: ''
+	  }
+	}
+	var methods = {
+	  processFiles(files) {
+	    console.info(files);
+	    this.renderImage(files[0]);
+	  },
+	  getLink() {
+	    this.getSize(this.get().imageUrl);
+	  },
+	  renderImage(file) {
+	    let self = this;
+	    let reader = new FileReader();
+
+	    reader.onload = function (e) {
+	      let src = e.target.result;
+	      self.getSize(src);
+	    };
+	    reader.readAsDataURL(file);
+	  },
+
+	  getSize(src) {
+	    let img = new Image();
+	    let self = this;
+	    img.onload = function () {
+	      let width = this.width;
+	      let height = this.height;
+	      self.pushImage(src, width, height);
+	    };
+
+	    img.onerror = function () {
+	      alert("Упс. что-то пошло не так. Проверьте правильность ссылки");
+	    };
+
+	    img.src = src;
+	  },
+
+	  pushImage(src, width, height) {
+	    let imagesArray = this.get().images;
+	    let image = {
+	      "src": `${src}`,
+	      "width": width,
+	      "height": height
+	    };
+	    imagesArray.push(image);
+	    this.set({images: imagesArray});
+	  }
+	};
+
+	const file = "src\\App.html";
+
+	function get_each_context_1(ctx, list, i) {
+		const child_ctx = Object.create(ctx);
+		child_ctx.image = list[i];
+		return child_ctx;
+	}
+
+	function get_each_context(ctx, list, i) {
+		const child_ctx = Object.create(ctx);
+		child_ctx.image = list[i];
+		return child_ctx;
+	}
+
+	function create_main_fragment(component, ctx) {
+		var div4, h1, text1, section, div0, h20, text3, p0, text5, input0, text6, p1, text8, input1, input1_updating = false, text9, button0, text11, div1, h21, text13, button1, text15, button2, text17, button3, text19, div2, button4, text21, text22, div3, current;
+
+		function change_handler(event) {
+			component.processFiles(this.files);
+		}
+
+		function input1_input_handler() {
+			input1_updating = true;
+			component.set({ imageUrl: input1.value });
+			input1_updating = false;
+		}
+
+		function click_handler(event) {
+			component.getLink();
+		}
+
+		function click_handler_1(event) {
+			component.set({ borderClass: 'gallery__image-wrapper_black-border' });
+		}
+
+		function click_handler_2(event) {
+			component.set({ borderClass: 'gallery__image-wrapper_flower-border' });
+		}
+
+		function click_handler_3(event) {
+			component.set({ borderClass: '' });
+		}
+
+		function click_handler_4(event) {
+			component.set({ showImagesInfo: !ctx.showImagesInfo });
+		}
+
+		var if_block = (ctx.showImagesInfo) && create_if_block(component, ctx);
+
+		var each_value_1 = ctx.images;
+
+		var each_blocks = [];
+
+		for (var i = 0; i < each_value_1.length; i += 1) {
+			each_blocks[i] = create_each_block(component, get_each_context_1(ctx, each_value_1, i));
+		}
+
+		return {
+			c: function create() {
+				div4 = createElement("div");
+				h1 = createElement("h1");
+				h1.textContent = "Галерея";
+				text1 = createText("\r\n    ");
+				section = createElement("section");
+				div0 = createElement("div");
+				h20 = createElement("h2");
+				h20.textContent = "Загрузка фото";
+				text3 = createText("\r\n            ");
+				p0 = createElement("p");
+				p0.textContent = "Вы можете загрузить картинку с вашего компьютера";
+				text5 = createText("\r\n            ");
+				input0 = createElement("input");
+				text6 = createText("\r\n\r\n            ");
+				p1 = createElement("p");
+				p1.textContent = "или добавьте ссылку на сторонний ресурс(после добавления ссылки, нажмите enter)";
+				text8 = createText("\r\n            ");
+				input1 = createElement("input");
+				text9 = createText("\r\n            ");
+				button0 = createElement("button");
+				button0.textContent = "Добавить картинку по ссылке";
+				text11 = createText("\r\n        ");
+				div1 = createElement("div");
+				h21 = createElement("h2");
+				h21.textContent = "Добавление рамки";
+				text13 = createText("\r\n            ");
+				button1 = createElement("button");
+				button1.textContent = "Добавить черную\r\n                рамку";
+				text15 = createText("\r\n            ");
+				button2 = createElement("button");
+				button2.textContent = "Добавить цветочную\r\n                рамку";
+				text17 = createText("\r\n            ");
+				button3 = createElement("button");
+				button3.textContent = "Удалить рамку";
+				text19 = createText("\r\n        ");
+				div2 = createElement("div");
+				button4 = createElement("button");
+				button4.textContent = "Показать/скрыть информацию по картинкам";
+				text21 = createText("\r\n            ");
+				if (if_block) if_block.c();
+				text22 = createText("\r\n\r\n    ");
+				div3 = createElement("div");
+
+				for (var i = 0; i < each_blocks.length; i += 1) {
+					each_blocks[i].c();
+				}
+				addLoc(h1, file, 1, 4, 32);
+				addLoc(h20, file, 4, 12, 146);
+				addLoc(p0, file, 5, 12, 182);
+				addListener(input0, "change", change_handler);
+				setAttribute(input0, "type", "file");
+				input0.placeholder = "Загрузите файл с вашего компьютера";
+				input0.className = "svelte-fh67lq";
+				addLoc(input0, file, 6, 12, 251);
+				addLoc(p1, file, 9, 12, 392);
+				addListener(input1, "input", input1_input_handler);
+				setAttribute(input1, "type", "url");
+				input1.placeholder = "укажите ссылку на файл";
+				input1.className = "svelte-fh67lq";
+				addLoc(input1, file, 10, 12, 492);
+				addListener(button0, "click", click_handler);
+				button0.className = "svelte-fh67lq";
+				addLoc(button0, file, 11, 12, 583);
+				div0.className = "photo-upload toolbar__section svelte-fh67lq";
+				addLoc(div0, file, 3, 8, 89);
+				addLoc(h21, file, 14, 12, 729);
+				addListener(button1, "click", click_handler_1);
+				button1.className = "svelte-fh67lq";
+				addLoc(button1, file, 15, 12, 768);
+				addListener(button2, "click", click_handler_2);
+				button2.className = "svelte-fh67lq";
+				addLoc(button2, file, 18, 12, 922);
+				addListener(button3, "click", click_handler_3);
+				button3.className = "svelte-fh67lq";
+				addLoc(button3, file, 21, 12, 1080);
+				div1.className = "decoration toolbar__section svelte-fh67lq";
+				addLoc(div1, file, 13, 8, 674);
+				addListener(button4, "click", click_handler_4);
+				button4.className = "svelte-fh67lq";
+				addLoc(button4, file, 24, 12, 1235);
+				div2.className = "toolbar__section loaded-images-info svelte-fh67lq";
+				addLoc(div2, file, 23, 8, 1172);
+				section.className = "toolbar svelte-fh67lq";
+				addLoc(section, file, 2, 4, 54);
+				div3.className = "gallery svelte-fh67lq";
+				addLoc(div3, file, 43, 4, 1914);
+				div4.className = "gallery-page svelte-fh67lq";
+				addLoc(div4, file, 0, 0, 0);
+			},
+
+			m: function mount(target, anchor) {
+				insert(target, div4, anchor);
+				append(div4, h1);
+				append(div4, text1);
+				append(div4, section);
+				append(section, div0);
+				append(div0, h20);
+				append(div0, text3);
+				append(div0, p0);
+				append(div0, text5);
+				append(div0, input0);
+				append(div0, text6);
+				append(div0, p1);
+				append(div0, text8);
+				append(div0, input1);
+
+				input1.value = ctx.imageUrl;
+
+				append(div0, text9);
+				append(div0, button0);
+				append(section, text11);
+				append(section, div1);
+				append(div1, h21);
+				append(div1, text13);
+				append(div1, button1);
+				append(div1, text15);
+				append(div1, button2);
+				append(div1, text17);
+				append(div1, button3);
+				append(section, text19);
+				append(section, div2);
+				append(div2, button4);
+				append(div2, text21);
+				if (if_block) if_block.m(div2, null);
+				append(div4, text22);
+				append(div4, div3);
+
+				for (var i = 0; i < each_blocks.length; i += 1) {
+					each_blocks[i].m(div3, null);
+				}
+
+				current = true;
+			},
+
+			p: function update(changed, _ctx) {
+				ctx = _ctx;
+				if (!input1_updating && changed.imageUrl) input1.value = ctx.imageUrl;
+
+				if (ctx.showImagesInfo) {
+					if (if_block) {
+						if_block.p(changed, ctx);
+					} else {
+						if_block = create_if_block(component, ctx);
+						if_block.c();
+						if_block.m(div2, null);
+					}
+				} else if (if_block) {
+					if_block.d(1);
+					if_block = null;
+				}
+
+				if (changed.borderClass || changed.images) {
+					each_value_1 = ctx.images;
+
+					for (var i = 0; i < each_value_1.length; i += 1) {
+						const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+						if (each_blocks[i]) {
+							each_blocks[i].p(changed, child_ctx);
+						} else {
+							each_blocks[i] = create_each_block(component, child_ctx);
+							each_blocks[i].c();
+							each_blocks[i].m(div3, null);
+						}
+					}
+
+					for (; i < each_blocks.length; i += 1) {
+						each_blocks[i].d(1);
+					}
+					each_blocks.length = each_value_1.length;
+				}
+			},
+
+			i: function intro(target, anchor) {
+				if (current) return;
+
+				this.m(target, anchor);
+			},
+
+			o: run,
+
+			d: function destroy$$1(detach) {
+				if (detach) {
+					detachNode(div4);
+				}
+
+				removeListener(input0, "change", change_handler);
+				removeListener(input1, "input", input1_input_handler);
+				removeListener(button0, "click", click_handler);
+				removeListener(button1, "click", click_handler_1);
+				removeListener(button2, "click", click_handler_2);
+				removeListener(button3, "click", click_handler_3);
+				removeListener(button4, "click", click_handler_4);
+				if (if_block) if_block.d();
+
+				destroyEach(each_blocks, detach);
+			}
+		};
+	}
+
+	// (26:12) {#if showImagesInfo}
+	function create_if_block(component, ctx) {
+		var h2, text1, text2, ul;
+
+		var if_block = (ctx.images.length === 0) && create_if_block_1(component, ctx);
+
+		var each_value = ctx.images;
+
+		var each_blocks = [];
+
+		for (var i = 0; i < each_value.length; i += 1) {
+			each_blocks[i] = create_each_block_1(component, get_each_context(ctx, each_value, i));
+		}
+
+		return {
+			c: function create() {
+				h2 = createElement("h2");
+				h2.textContent = "Список загруженных изображений:";
+				text1 = createText("\r\n            ");
+				if (if_block) if_block.c();
+				text2 = createText("\r\n            ");
+				ul = createElement("ul");
+
+				for (var i = 0; i < each_blocks.length; i += 1) {
+					each_blocks[i].c();
+				}
+				addLoc(h2, file, 26, 12, 1391);
+				ul.className = "images-list";
+				addLoc(ul, file, 30, 12, 1550);
+			},
+
+			m: function mount(target, anchor) {
+				insert(target, h2, anchor);
+				insert(target, text1, anchor);
+				if (if_block) if_block.m(target, anchor);
+				insert(target, text2, anchor);
+				insert(target, ul, anchor);
+
+				for (var i = 0; i < each_blocks.length; i += 1) {
+					each_blocks[i].m(ul, null);
+				}
+			},
+
+			p: function update(changed, ctx) {
+				if (ctx.images.length === 0) {
+					if (!if_block) {
+						if_block = create_if_block_1(component, ctx);
+						if_block.c();
+						if_block.m(text2.parentNode, text2);
+					}
+				} else if (if_block) {
+					if_block.d(1);
+					if_block = null;
+				}
+
+				if (changed.images) {
+					each_value = ctx.images;
+
+					for (var i = 0; i < each_value.length; i += 1) {
+						const child_ctx = get_each_context(ctx, each_value, i);
+
+						if (each_blocks[i]) {
+							each_blocks[i].p(changed, child_ctx);
+						} else {
+							each_blocks[i] = create_each_block_1(component, child_ctx);
+							each_blocks[i].c();
+							each_blocks[i].m(ul, null);
+						}
+					}
+
+					for (; i < each_blocks.length; i += 1) {
+						each_blocks[i].d(1);
+					}
+					each_blocks.length = each_value.length;
+				}
+			},
+
+			d: function destroy$$1(detach) {
+				if (detach) {
+					detachNode(h2);
+					detachNode(text1);
+				}
+
+				if (if_block) if_block.d(detach);
+				if (detach) {
+					detachNode(text2);
+					detachNode(ul);
+				}
+
+				destroyEach(each_blocks, detach);
+			}
+		};
+	}
+
+	// (28:12) {#if images.length === 0}
+	function create_if_block_1(component, ctx) {
+		var p;
+
+		return {
+			c: function create() {
+				p = createElement("p");
+				p.textContent = "Вы еще ничего не загрузили";
+				p.className = "svelte-fh67lq";
+				addLoc(p, file, 28, 12, 1484);
+			},
+
+			m: function mount(target, anchor) {
+				insert(target, p, anchor);
+			},
+
+			d: function destroy$$1(detach) {
+				if (detach) {
+					detachNode(p);
+				}
+			}
+		};
+	}
+
+	// (32:16) {#each images as image}
+	function create_each_block_1(component, ctx) {
+		var li, p0, text0, text1_value = ctx.image.src, text1, text2, p1, text3, text4_value = ctx.image.width, text4, text5, text6, p2, text7, text8_value = ctx.image.height, text8, text9;
+
+		return {
+			c: function create() {
+				li = createElement("li");
+				p0 = createElement("p");
+				text0 = createText("src: ");
+				text1 = createText(text1_value);
+				text2 = createText("\r\n                    ");
+				p1 = createElement("p");
+				text3 = createText("width: ");
+				text4 = createText(text4_value);
+				text5 = createText(" px");
+				text6 = createText("\r\n                    ");
+				p2 = createElement("p");
+				text7 = createText("height: ");
+				text8 = createText(text8_value);
+				text9 = createText(" px");
+				p0.className = "svelte-fh67lq";
+				addLoc(p0, file, 33, 20, 1659);
+				p1.className = "svelte-fh67lq";
+				addLoc(p1, file, 34, 20, 1704);
+				p2.className = "svelte-fh67lq";
+				addLoc(p2, file, 35, 20, 1756);
+				addLoc(li, file, 32, 16, 1633);
+			},
+
+			m: function mount(target, anchor) {
+				insert(target, li, anchor);
+				append(li, p0);
+				append(p0, text0);
+				append(p0, text1);
+				append(li, text2);
+				append(li, p1);
+				append(p1, text3);
+				append(p1, text4);
+				append(p1, text5);
+				append(li, text6);
+				append(li, p2);
+				append(p2, text7);
+				append(p2, text8);
+				append(p2, text9);
+			},
+
+			p: function update(changed, ctx) {
+				if ((changed.images) && text1_value !== (text1_value = ctx.image.src)) {
+					setData(text1, text1_value);
+				}
+
+				if ((changed.images) && text4_value !== (text4_value = ctx.image.width)) {
+					setData(text4, text4_value);
+				}
+
+				if ((changed.images) && text8_value !== (text8_value = ctx.image.height)) {
+					setData(text8, text8_value);
+				}
+			},
+
+			d: function destroy$$1(detach) {
+				if (detach) {
+					detachNode(li);
+				}
+			}
+		};
+	}
+
+	// (45:8) {#each images as image}
+	function create_each_block(component, ctx) {
+		var div, img, img_src_value, div_class_value;
+
+		return {
+			c: function create() {
+				div = createElement("div");
+				img = createElement("img");
+				img.src = img_src_value = ctx.image.src;
+				img.alt = "";
+				img.className = "gallery__image svelte-fh67lq";
+				addLoc(img, file, 45, 58, 2028);
+				div.className = div_class_value = "gallery__image-wrapper " + ctx.borderClass + " svelte-fh67lq";
+				addLoc(div, file, 45, 8, 1978);
+			},
+
+			m: function mount(target, anchor) {
+				insert(target, div, anchor);
+				append(div, img);
+			},
+
+			p: function update(changed, ctx) {
+				if ((changed.images) && img_src_value !== (img_src_value = ctx.image.src)) {
+					img.src = img_src_value;
+				}
+
+				if ((changed.borderClass) && div_class_value !== (div_class_value = "gallery__image-wrapper " + ctx.borderClass + " svelte-fh67lq")) {
+					div.className = div_class_value;
+				}
+			},
+
+			d: function destroy$$1(detach) {
+				if (detach) {
+					detachNode(div);
+				}
+			}
+		};
+	}
+
+	function App(options) {
+		this._debugName = '<App>';
+		if (!options || (!options.target && !options.root)) {
+			throw new Error("'target' is a required option");
+		}
+
+		init(this, options);
+		this._state = assign(data(), options.data);
+		if (!('imageUrl' in this._state)) console.warn("<App> was created without expected data property 'imageUrl'");
+		if (!('showImagesInfo' in this._state)) console.warn("<App> was created without expected data property 'showImagesInfo'");
+		if (!('images' in this._state)) console.warn("<App> was created without expected data property 'images'");
+		if (!('borderClass' in this._state)) console.warn("<App> was created without expected data property 'borderClass'");
+		this._intro = !!options.intro;
+
+		this._fragment = create_main_fragment(this, this._state);
+
+		if (options.target) {
+			if (options.hydrate) throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+			this._fragment.c();
+			this._mount(options.target, options.anchor);
+		}
+
+		this._intro = true;
+	}
+
+	assign(App.prototype, protoDev);
+	assign(App.prototype, methods);
+
+	App.prototype._checkReadOnly = function _checkReadOnly(newState) {
+	};
+
+	const app = new App({
+		target: document.body,
+		data: {
+			name: 'Gallery'
+		}
+	});
+
+	return app;
+
+}());
+//# sourceMappingURL=bundle.js.map
