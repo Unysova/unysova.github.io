@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Мое здоровье</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,600,700" rel="stylesheet">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="mask">
+    <div class="mask__first-screen">
+        <div class="mask__elements">
+            <div class="elements__circle elements__circle-1"></div>
+            <div class="elements__circle elements__circle-2"></div>
+            <div class="elements__circle elements__circle-3"></div>
+        </div>
+
+        <header>
+            <div class="wrapper wrapper_big header__content">
+                <div class="header__logo logo">
+                    <img src="img/logo_white.png" alt="мое здоровье">
+                </div>
+
+                <div class="header__info">
+                    <nav>
+                        <ul class="header__menu">
+                            <li><a href="#">О сервисе</a></li>
+                            <li><a href="#">Функции</a></li>
+                            <li><a href="#">Возможности</a></li>
+                            <li><a href="#">Партнеры</a></li>
+                        </ul>
+                    </nav>
+                    <button class="btn_transparent js-popup" data-mfp-src="#call-form">
+                        Оставить заявку
+                    </button>
+                </div>
+            </div>
+
+        </header>
+        <div class="main">
+            <div class="wrapper wrapper_small">
+                <h1>Расширяем возможности предоставления
+                    качественных медицинских услуг</h1>
+                <p>«Дневник здоровья» – новый сервис для самоконтроля показателей состояния здоровья, разработанный для
+                    участников программы «Мое здоровье».</p>
+                <button class="btn_red">Узнать больше</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="mask__second-screen">
+        <div class="mask__elements">
+            <div class="elements__circle elements__circle-4"></div>
+            <div class="elements__circle elements__circle-5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" version="1.1">
+                    <ellipse cx="51%" cy="52.5%" rx="48.25%" ry="47%" stroke="#60759d" stroke-width="1"
+                             fill="transparent"/>
+
+                </svg>
+            </div>
+        </div>
+
+        <section class="health-diary">
+            <div class="wrapper health-diary__wrapper">
+                <div class="image-wrapper">
+                    <img src="img/phone.png" alt="Дневник здоровья">
+                </div>
+                <div class="summary-content">
+                    <h2>Что такое «Дневник здоровья»?</h2>
+                    <p class="list-headline">Дневник пациента — это удобный онлайн-сервис:</p>
+                    <ul class="list">
+                        <li>Вносите результаты измерений вручную или с помощью
+                            интегрированных приборов
+                        </li>
+                        <li>Ведите персональную медицинскую карту с историей
+                            ваших измерений
+                        </li>
+                        <li>Делитесь результатами измерений со специалистами
+                            для повышения эффективности лечения
+                        </li>
+                        <li>Получайте рекомендации, созданные специально для вас</li>
+                    </ul>
+                    <button class="btn_red js-popup" data-mfp-src="#call-form">Оставить
+                        заявку
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div id="call-form" class="mfp-hide popup_white">
+    <form method="post">
+        <h2>Оставить заявку</h2>
+        <p>Напишите нам, и мы свяжемся с вами в ближайшее время</p>
+
+        <input id="name" name="name" type="text" placeholder="Ваше имя" required>
+        <input id="email" name="email" type="email" placeholder="example@domain.com" required>
+        <input id="phone" name="phone" type="tel" placeholder="+79990009900" required>
+        <button class="btn_red">Отправить</button>
+    </form>
+    <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
